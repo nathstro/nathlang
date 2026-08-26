@@ -1,14 +1,13 @@
 #include "Interpreter.hpp"
 #include "Callable.hpp"
 #include "Class.hpp"
-#include "Clock.hpp"
 #include "Environment.hpp"
 #include "ErrorHandler.hpp"
 #include "Function.hpp"
-#include "Input.hpp"
 #include "Instance.hpp"
 #include "Return.hpp"
 #include "RuntimeError.hpp"
+#include "StdLib.hpp"
 #include "Stmt.hpp"
 #include "Token.hpp"
 #include <any>
@@ -23,11 +22,7 @@ Interpreter::Interpreter()
 {
 	globalEnvironment = std::make_shared<Environment>(); 
 	environment = globalEnvironment;
-
-	std::shared_ptr<Callable> input = std::make_shared<Input>();
-	globalEnvironment->define("input", input);
-	std::shared_ptr<Callable> clock = std::make_shared<Clock>();
-	globalEnvironment->define("clock", clock);
+	StdLib::registerAllNativeFunctions(*this);
 }
 
 void Interpreter::interpret(std::vector<std::unique_ptr<Stmt>>& stmts)
@@ -112,7 +107,7 @@ std::any Interpreter::visitCall(const Call& expr)
 			throw RuntimeError(expr.paren, "Expected " + std::to_string((*function)->arity()) + " arguments but got " + std::to_string(args.size()));
 		}
 
-		return (*function)->call(*this, args);
+		return (*function)->call(*this, expr.paren, args);
 	}
 
 	if (auto newClass = std::any_cast<std::shared_ptr<Class>>(&callee))
@@ -122,7 +117,7 @@ std::any Interpreter::visitCall(const Call& expr)
 			throw RuntimeError(expr.paren, "Expected " + std::to_string((*newClass)->arity()) + " arguments but got " + std::to_string(args.size()));
 		}
 
-		return (*newClass)->call(*this, args);
+		return (*newClass)->call(*this, expr.paren, args);
 	}
 
 	throw RuntimeError(expr.paren, "Can only call functions and classes");

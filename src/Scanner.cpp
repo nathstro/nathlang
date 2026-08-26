@@ -74,12 +74,12 @@ void Scanner::scanToken()
 		case ',': addToken(TokenType::COMMA); break;
 		case ':': addToken(TokenType::COLON); break;
 		case '.': addToken(TokenType::DOT); break;
+		case '+': addToken(TokenType::PLUS); break;
+		case '-': addToken(TokenType::MINUS); break;
+		case '*': addToken(TokenType::STAR); break;
+		case '/': addToken(TokenType::SLASH); break;
 		case '=': addToken(match('=') ? TokenType::EQ : TokenType::ASSIGN); break;
 		case '!': addToken(match('=') ? TokenType::NE : TokenType::NOT); break;
-		case '+': addToken(match('=') ? TokenType::PE : TokenType::PLUS); break;
-		case '-': addToken(match('=') ? TokenType::ME : TokenType::MINUS); break;
-		case '*': addToken(match('=') ? TokenType::SE : TokenType::STAR); break;
-		case '/': addToken(match('=') ? TokenType::DE : TokenType::SLASH); break;
 		case '<': addToken(match('=') ? TokenType::LE : TokenType::LESSER); break;
 		case '>': addToken(match('=') ? TokenType::GE : TokenType::GREATER); break;
 

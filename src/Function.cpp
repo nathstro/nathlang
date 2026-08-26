@@ -10,7 +10,7 @@ std::shared_ptr<Function> Function::bind(std::shared_ptr<Instance> instance)
 	return std::make_shared<Function>(declaration, environment, isInitialiser);
 }
 
-std::any Function::call(Interpreter& interpreter, const std::vector<std::any>& args)
+std::any Function::call(Interpreter& interpreter, const Token& token, const std::vector<std::any>& args)
 {
 	std::shared_ptr<Environment> environment = std::make_shared<Environment>(closure);
 

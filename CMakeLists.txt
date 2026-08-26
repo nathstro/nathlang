@@ -18,6 +18,7 @@ add_executable(nathlang
     src/Resolver.cpp
     src/Class.cpp
     src/Instance.cpp
+    src/StdLib.cpp
 )
 
 target_include_directories(nathlang PRIVATE

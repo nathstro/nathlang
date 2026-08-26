@@ -12,7 +12,7 @@ class Function : public Callable
 		: declaration(declaration), closure(std::move(closure)), isInitialiser(isInitialiser)
 		{}
 		std::shared_ptr<Function> bind(std::shared_ptr<Instance> instance);
-		std::any call(Interpreter& intepreter, const std::vector<std::any>& args) override;
+		std::any call(Interpreter& intepreter, const Token& token, const std::vector<std::any>& args) override;
 		int arity() override;
 		std::string toString() override;
 

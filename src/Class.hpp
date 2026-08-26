@@ -20,5 +20,5 @@ class Class : public Callable, public std::enable_shared_from_this<Class>
 		{
 			return "<class " + name + ">";
 		}
-		std::any call(Interpreter& interpreter, const std::vector<std::any>& args) override;
+		std::any call(Interpreter& interpreter, const Token& token, const std::vector<std::any>& args) override;
 };
