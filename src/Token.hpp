@@ -6,11 +6,10 @@ enum class TokenType {
 	NEWLINE,							// \n ;
 	LEFT_PAREN, RIGHT_PAREN, 			// ( )
 	LEFT_BRACE, RIGHT_BRACE,			// { }
-	COMMA, COLON, DOT, ASSIGN,			// , : ; =
+	COMMA, COLON, DOT, ASSIGN,			// , : . =
 	EQ, NE, GREATER, GE, LESSER, LE,	// == != > >= < <=
-	PLUS, MINUS, PE, ME,				// + - += -= .
-	STAR, SLASH, SE, DE,				// * / *= /=
-	
+	PLUS, MINUS, STAR, SLASH, 			// + - * /
+
 	IDENTIFIER, STRING, NUM, 			// literals
 
 	AND, OR, NOT, NIL, TRUE, FALSE, LET,
