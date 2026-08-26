@@ -1,0 +1,22 @@
+{
+	"folders":
+	[
+		{
+			"path": "."
+		}
+	],
+	
+	"build_systems":
+	[
+		{
+			"name": "Python",
+			"shell_cmd": "python3 \"${file}\"",
+			"working_dir": "${project_path}"
+		},
+		{
+			"name": "CMake Build",
+			"shell_cmd": "cmake -S . -B build && cmake --build build && ./build/nathlang scripts/test.nl",
+            "working_dir": "${project_path}"
+		}
+	]
+}
